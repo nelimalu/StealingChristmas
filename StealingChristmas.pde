@@ -1,16 +1,29 @@
+/* constants */
+final int GRAVITY = 3;
+
+/* global variables */
 boolean[] moveKeys = new boolean[4];
+int groundY;
 
 void setup() {
   size(1000, 600);
   
+  // variables that can only be defined after window size is set
+  groundY = height - 30;
+  grinchY = height - grinchHeight - (height - groundY);
+  println(groundY);
 }
 
 void draw() {
-  background(240, 240, 240);
+  background(240, 252, 252);
   
-  println(moveKeys[0]);
-  
+  drawGround();
   updateGrinch();
+}
+
+void drawGround() {
+  fill(32, 32, 32);
+  rect(0, groundY, width, height - groundY);
 }
 
 void keyPressed() {

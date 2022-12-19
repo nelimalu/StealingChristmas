@@ -2,8 +2,9 @@
 MCPT Learning Platformer Example
 
 ## To do
-- [ ] create moveable grinch
+- [x] create moveable grinch
 - [ ] create ground with collision
+- [ ] add physics to grinch
 - [ ] create platforms
 - [ ] make sidescrolling effect
 - [ ] randomly generate platforms
@@ -21,7 +22,7 @@ background:
 - clouds
 
 platforms:
-- ground (greyish beige colour) 
+- ground (greyish beige colour)
 - ground + snow on top
 
 obstacles:
