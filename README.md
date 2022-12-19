@@ -3,8 +3,8 @@ MCPT Learning Platformer Example
 
 ## To do
 - [x] create moveable grinch
-- [ ] create ground with collision
-- [ ] add physics to grinch
+- [x] create ground with collision
+- [x] add physics + jumping to grinch
 - [ ] create platforms
 - [ ] make sidescrolling effect
 - [ ] randomly generate platforms

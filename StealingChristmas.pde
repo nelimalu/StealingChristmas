@@ -2,7 +2,7 @@
 final int GRAVITY = 3;
 
 /* global variables */
-boolean[] moveKeys = new boolean[4];
+boolean[] moveKeys = new boolean[4];  // array to store all directions being pressed: 0 - UP, 1 - DOWN, 2 - LEFT, 3 - RIGHT
 int groundY;
 
 void setup() {
@@ -25,6 +25,7 @@ void drawGround() {
   fill(32, 32, 32);
   rect(0, groundY, width, height - groundY);
 }
+
 
 void keyPressed() {
   if (key == 'w' || key == UP)
