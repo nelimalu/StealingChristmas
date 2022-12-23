@@ -11,19 +11,16 @@ void setup() {
   // variables that can only be defined after window size is set
   groundY = height - 30;
   grinchY = height - grinchHeight - (height - groundY);
-  println(groundY);
+  createPlatform(0, groundY, width, height - groundY);
+  //generatePlatforms();
+  createPlatform(400, 300, 100, 100);
 }
 
 void draw() {
   background(240, 252, 252);
   
-  drawGround();
   updateGrinch();
-}
-
-void drawGround() {
-  fill(32, 32, 32);
-  rect(0, groundY, width, height - groundY);
+  drawPlatforms();
 }
 
 
