@@ -45,8 +45,7 @@ String platformCollide(int x, int y, int w, int h) { // takes grinch location as
     
     String collision = collide(x, y, w, h, platforms.get(i)[0], platforms.get(i)[1], platforms.get(i)[2], platforms.get(i)[3]);
     if (!collision.equals("none")) {
-      println(collision);
-      return collision;
+      return collision + ";" + platforms.get(i)[1] + ";" + platforms.get(i)[3];
     }
 
   }

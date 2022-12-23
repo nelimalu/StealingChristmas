@@ -23,13 +23,14 @@ void resetJump() {
   grinchJumpingFrame = 0;
 }
 
-void physicsGrinch(String collision) {
-  grinchY += GRAVITY * (0.1 * (1 + grinchJumpingFrame));  // move grinch down with gravity
-  if (GRAVITY * (0.1 * (1 + grinchJumpingFrame)) > 300 / (25 + grinchJumpingFrame))
-    println(grinchJumpingFrame);
+void physicsGrinch(String[] collision) {
+  if (grinchJumping)
+    grinchY += GRAVITY * (0.1 * (1 + grinchJumpingFrame));  // move grinch down with gravity
+  else
+    grinchY += GRAVITY * 1.5;
   
-  if (collision.equals("top")) {  // make sure he cant fall through the floor
-    grinchY = groundY - grinchHeight;
+  if (collision[0].equals("top")) {  // make sure he cant fall through the floor
+    grinchY = int(collision[1]) - grinchHeight;
     
     if (grinchJumping && grinchJumpingFrame >= 1) {  // make sure he gets a chance to actually jump
       resetJump();
@@ -39,30 +40,28 @@ void physicsGrinch(String collision) {
     
   if (grinchJumping) {
     grinchJumpingFrame++;
-    int moveY = grinchY - (300 / (25 + grinchJumpingFrame));  // 300 / (25 + grinchJumpingFrame);
+    grinchY -= (300 / (25 + grinchJumpingFrame));  // 300 / (25 + grinchJumpingFrame);
     
-    if (platformCollide(grinchX, moveY, grinchWidth, grinchHeight).equals("bottom")) {
-      
+    if (collision[0].equals("bottom")) {
       grinchJumpingFrame = 20;
-      moveY += 3;
+      grinchY = int(collision[1]) + int(collision[2]) + 1;
       // moveY += (300 / (25 + grinchJumpingFrame));
     }
-    
-    grinchY = moveY;
   }
 }
 
 void moveGrinch() {
-  String collision = platformCollide(grinchX, grinchY, grinchWidth, grinchHeight);
+  String[] collision = platformCollide(grinchX, grinchY, grinchWidth, grinchHeight).split(";");
+  println(collision);
   
-  if (moveKeys[0] && !collision.equals("bottom"))// && !grinchJumping) // UP
+  if (moveKeys[0] && !collision[0].equals("bottom"))// && !grinchJumping) // UP
     grinchJumping = true;
     //grinchY -= grinchVel;
-  //if (moveKeys[1] && !collision.equals("top"))// && !grinchJumping)
+  //if (moveKeys[1] && !collision[0].equals("top"))// && !grinchJumping)
   //  grinchY += grinchVel;
-  if (moveKeys[2] && !collision.equals("right")) // LEFT
+  if (moveKeys[2] && !collision[0].equals("right")) // LEFT
     grinchX -= grinchVel;
-  if (moveKeys[3] && !collision.equals("left"))  // RIGHT
+  if (moveKeys[3] && !collision[0].equals("left"))  // RIGHT
     grinchX += grinchVel;
     
   physicsGrinch(collision);

@@ -12,8 +12,8 @@ void setup() {
   groundY = height - 30;
   grinchY = height - grinchHeight - (height - groundY);
   createPlatform(0, groundY, width, height - groundY);
-  //generatePlatforms();
-  createPlatform(400, 300, 100, 100);
+  generatePlatforms();
+  //createPlatform(400, 500, 100, 100);
 }
 
 void draw() {
