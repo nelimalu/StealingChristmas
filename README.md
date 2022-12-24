@@ -7,7 +7,7 @@ MCPT Learning Platformer Example
 - [x] add physics + jumping to grinch
 - [x] create platforms
 - [x] make sidescrolling effect
-- [ ] randomly generate platforms
+- [x] randomly generate platforms
 - [ ] randomly generate obstacles
 - [ ] implement losing
 - [ ] add chasing santa

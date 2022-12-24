@@ -3,6 +3,7 @@ int grinchHeight = 100;
 int grinchX = 10;
 int grinchY;
 int grinchVel = 4;
+int grinchJumpHeight = 400;
 boolean grinchJumping = false;
 int grinchJumpingFrame = 0;
 
@@ -55,8 +56,9 @@ void physicsGrinch(ArrayList<String> collision, String collisionTypes) {
     
   if (grinchJumping) {
     grinchJumpingFrame++;
-    grinchY -= (300 / (25 + grinchJumpingFrame));  // 300 / (25 + grinchJumpingFrame);
+    grinchY -= (grinchJumpHeight / (25 + grinchJumpingFrame));  // 300 / (25 + grinchJumpingFrame);
     
+    /*
     if (collisionTypes.contains("bottom")) {
       for (int i = 0; i < collision.size(); i++) {
         String[] thisCollision = collision.get(i).split(";");
@@ -67,6 +69,7 @@ void physicsGrinch(ArrayList<String> collision, String collisionTypes) {
         }
       }
     }
+    */
   }
 }
 

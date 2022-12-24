@@ -1,5 +1,4 @@
 ArrayList<int[]> platforms = new ArrayList<int[]>();
-int collisionMargin = 1;
 
 boolean rectCollision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) {  // checks if two rectangles collide
   return x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && h1 + y1 > y2;
@@ -49,13 +48,7 @@ void drawPlatforms() {
   }
 }
 
-void generatePlatform() {
-  createPlatform(width, (int) random(height), 200, 10);
-}
-
-void updatePlatforms() {
-  drawPlatforms();
-  
+void movePlatforms() {
   for (int i = 0; i < platforms.size(); i++) {
     platforms.get(i)[0] -= BACKGROUND_SPEED;
     
@@ -63,7 +56,23 @@ void updatePlatforms() {
       platforms.remove(i);
     }
   }
+}
+
+void updatePlatforms() {
+  drawPlatforms();
+  movePlatforms();
   
-  if ((int) random(50) == 1)
-    generatePlatform();
+  int[] last_platform = platforms.get(platforms.size() - 1);
+  int last_platform_end = last_platform[0] + last_platform[2];
+  
+  if (last_platform_end <= width) {
+    int gap = (int) random(150, 300);  // how big is the gap between platforms
+    int size = (int) random(200, 500);  // how long is the new platform
+    
+    int maximum_height_range = max(grinchHeight, last_platform[1] - PLATFORM_SPAWN_DIFFERENCE);
+    int minimum_height_range = min(groundY, last_platform[1] + PLATFORM_SPAWN_DIFFERENCE);
+    int y = (int) random(maximum_height_range, minimum_height_range);
+    
+    createPlatform(last_platform_end + gap, y, size, height - y);
+  }
 }
