@@ -40,14 +40,17 @@ void generatePlatforms() {
   }
 }
 
-String platformCollide(int x, int y, int w, int h) { // takes grinch location as parameters
+ArrayList<String> platformCollide(int x, int y, int w, int h) { // takes grinch location as parameters
+  ArrayList<String> collisions = new ArrayList<String>();
+
   for (int i = 0; i < platforms.size(); i++) {
     
     String collision = collide(x, y, w, h, platforms.get(i)[0], platforms.get(i)[1], platforms.get(i)[2], platforms.get(i)[3]);
     if (!collision.equals("none")) {
-      return collision + ";" + platforms.get(i)[1] + ";" + platforms.get(i)[3];
+      collisions.add(collision + ";" + platforms.get(i)[1] + ";" + platforms.get(i)[3]);
     }
 
   }
-  return "none";
+  
+  return collisions;
 }
