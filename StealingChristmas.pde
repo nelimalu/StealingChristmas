@@ -22,6 +22,7 @@ void draw() {
   
   updateGrinch();
   updatePlatforms();
+  updateObstacles();
 }
 
 

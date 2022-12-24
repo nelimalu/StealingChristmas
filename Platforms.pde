@@ -74,5 +74,9 @@ void updatePlatforms() {
     int y = (int) random(maximum_height_range, minimum_height_range);
     
     createPlatform(last_platform_end + gap, y, size, height - y);
+    
+    if ((int) random(1, 2) == 1) {  // 50% chance to create an obstacle
+      createObstacle(platforms.get(platforms.size() - 1));
+    }
   }
 }
