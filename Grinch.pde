@@ -32,7 +32,6 @@ void physicsGrinch(ArrayList<String> collision, String collisionTypes) {
   if (collisionTypes.contains("top")) {  // make sure he cant fall through the floor
     for (int i = 0; i < collision.size(); i++) {
       String[] thisCollision = collision.get(i).split(";");
-      println(thisCollision);
       if (thisCollision[0].equals("top")) {
         grinchY = int(thisCollision[1]) - grinchHeight;
         
@@ -42,6 +41,16 @@ void physicsGrinch(ArrayList<String> collision, String collisionTypes) {
       }
     }
   }
+  
+  if (collisionTypes.contains("left")) {  // make sure he doesn't move into walls
+    for (int i = 0; i < collision.size(); i++) {
+      String[] thisCollision = collision.get(i).split(";");
+      if (thisCollision[0].equals("left")) {
+        grinchX = int(thisCollision[3]) - grinchWidth - BACKGROUND_SPEED - 1;  // ISSUE glitches into wall
+      }
+    }
+  }
+        
   
     
   if (grinchJumping) {
@@ -75,12 +84,14 @@ void moveGrinch() {
   ArrayList<String> collisions = platformCollide(grinchX, grinchY, grinchWidth, grinchHeight);
   String collisionTypes = getCollisionTypes(collisions);
   
+  println(collisionTypes);
+  
   if (moveKeys[0] && !collisionTypes.contains("bottom"))// && !grinchJumping) // UP
     grinchJumping = true;
     //grinchY -= grinchVel;
   //if (moveKeys[1] && !collision[0].equals("top"))// && !grinchJumping)
   //  grinchY += grinchVel;
-  if (moveKeys[2] && !collisionTypes.contains("right")) // LEFT
+  if (moveKeys[2] && !collisionTypes.contains("right"))// LEFT
     grinchX -= grinchVel;
   if (moveKeys[3] && !collisionTypes.contains("left"))  // RIGHT
     grinchX += grinchVel;

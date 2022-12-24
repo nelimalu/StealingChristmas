@@ -1,5 +1,6 @@
 /* constants */
 final int GRAVITY = 3;
+final int BACKGROUND_SPEED = 2;
 
 /* global variables */
 boolean[] moveKeys = new boolean[4];  // array to store all directions being pressed: 0 - UP, 1 - DOWN, 2 - LEFT, 3 - RIGHT
@@ -12,7 +13,7 @@ void setup() {
   groundY = height - 30;
   grinchY = height - grinchHeight - (height - groundY);
   createPlatform(0, groundY, width, height - groundY);
-  generatePlatforms();
+  //generatePlatform();
   //createPlatform(400, 500, 100, 100);
 }
 
@@ -20,7 +21,7 @@ void draw() {
   background(240, 252, 252);
   
   updateGrinch();
-  drawPlatforms();
+  updatePlatforms();
 }
 
 
