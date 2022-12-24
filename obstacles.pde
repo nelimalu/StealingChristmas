@@ -9,6 +9,10 @@ void updateObstacles() {
     obstacles.get(i)[0] -= BACKGROUND_SPEED;
     fill(255,0,0);
     rect(obstacles.get(i)[0], obstacles.get(i)[1], obstacles.get(i)[2], obstacles.get(i)[3]);
+    
+    if (rectCollision(grinchX, grinchY, grinchWidth, grinchHeight, obstacles.get(i)[0], obstacles.get(i)[1], obstacles.get(i)[2], obstacles.get(i)[3])) {
+      lost = true;
+    }
   }
 }
 

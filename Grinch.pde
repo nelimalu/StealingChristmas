@@ -11,6 +11,9 @@ int grinchJumpingFrame = 0;
 void updateGrinch() {
   moveGrinch();
   drawGrinch();
+  
+  if (grinchY >= height)  // if the grinch falls under the screen
+    lost = true;
 }
 
 void drawGrinch() {

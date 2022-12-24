@@ -6,6 +6,7 @@ final int PLATFORM_SPAWN_DIFFERENCE = 150;
 /* global variables */
 boolean[] moveKeys = new boolean[4];  // array to store all directions being pressed: 0 - UP, 1 - DOWN, 2 - LEFT, 3 - RIGHT
 int groundY;
+boolean lost = false;
 
 void setup() {
   size(1000, 600);
@@ -18,11 +19,30 @@ void setup() {
 }
 
 void draw() {
-  background(240, 252, 252);
+  if (!lost) {
+    background(240, 252, 252);
+    
+    updateGrinch();
+    updatePlatforms();
+    updateObstacles();
+    
+  } else {
+    lose();
+  }
+}
+
+
+void lose() {
+  fill(255,0,0,1);
+  rect(0, 0, width, height);
   
-  updateGrinch();
-  updatePlatforms();
-  updateObstacles();
+  textSize(128);
+  String loseMessage = "GAME OVER";
+  float text_width = textWidth(loseMessage);
+  float text_height = textAscent() - textDescent();
+  fill(0, 0, 0);
+  text("GAME OVER", (width / 2) - (text_width / 2), (height / 2) + (text_height / 2)); 
+  
 }
 
 

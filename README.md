@@ -8,8 +8,8 @@ MCPT Learning Platformer Example
 - [x] create platforms
 - [x] make sidescrolling effect
 - [x] randomly generate platforms
-- [ ] randomly generate obstacles
-- [ ] implement losing
+- [x] randomly generate obstacles
+- [x] implement losing
 - [ ] add chasing santa
 - [ ] add graphics
 
