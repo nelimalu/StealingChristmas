@@ -8,8 +8,8 @@ int santaJumpTravelled = 0;
 
 int vertexX;
 int vertexY;
-double inclineSpeed;
-double declineSpeed;
+double inclineSlope;
+double declineSlope;
 int[] point1;
 int[] point2;
 
@@ -40,8 +40,8 @@ void updateSanta() {
       vertexX = (santaJumpDistance / 2) + point1[0];
       vertexY = min(point1[1], point2[1]) - 100;
       
-      inclineSpeed = (point1[1] - vertexY) / ((santaJumpDistance / 2.0) / 1);
-      declineSpeed = (point2[1] - vertexY) / ((santaJumpDistance / 2.0) / BACKGROUND_SPEED);
+      inclineSlope = (point1[1] - vertexY) / (santaJumpDistance / -2.0);
+      declineSlope = (point2[1] - vertexY) / (santaJumpDistance / 2.0);
     }
   } else {    
     santaJumpTravelled += BACKGROUND_SPEED;
@@ -50,12 +50,12 @@ void updateSanta() {
     ellipse(point1[0], point1[1], 25, 25);
     ellipse(point2[0], point2[1], 25, 25);
     
-    println(inclineSpeed + " " + declineSpeed + " " + santaY);
+    println(inclineSlope + " " + declineSlope + " " + santaY);
     
     if (santaJumpTravelled < vertexX) {
-      santaY -= inclineSpeed;
+      santaY = (int) ((santaJumpTravelled) * inclineSlope + (groundY - santaHeight));
     } if (santaJumpTravelled > vertexX) {
-      santaY += declineSpeed;
+      santaY = (int) ((santaJumpTravelled) * declineSlope) ;
       //santaY = vertexY;
     }
     

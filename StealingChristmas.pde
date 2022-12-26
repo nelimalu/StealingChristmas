@@ -24,8 +24,7 @@ void setup() {
   groundY = height - 30;
   grinchY = height - grinchHeight - (height - groundY);
   santaY = groundY - santaHeight;
-  createPlatform(0, groundY, 1024, height - groundY, 0);
-  //createPlatform(400, 500, 100, 100);
+  createPlatform(0, groundY, 1024, height - groundY, 0);  // starting platform
   
   // image loading
   for (int i = 0; i < 6; i++) {
@@ -38,6 +37,7 @@ void setup() {
 
 
 void drawBackground() {
+  // cycle background image at a slower speed
   background_imageX -= BACKGROUND_IMAGE_SPEED;
   image(background, background_imageX, 0);
   image(background, background_imageX + width, 0);
@@ -49,7 +49,7 @@ void drawBackground() {
     
   textSize(32);
   fill(0, 0, 0);
-  text("Score: " + score, 10, 40); 
+  text("Score: " + score, 10, 40); // draw score on top left of screen
 }
 
 void draw() {
@@ -70,18 +70,19 @@ void draw() {
 
 void lose() {
   fill(255,0,0,1);
-  rect(0, 0, width, height);
+  rect(0, 0, width, height);  // red tint overlay
   
+  // display game over message in middle of screen
   textSize(128);
   String loseMessage = "GAME OVER";
   float text_width = textWidth(loseMessage);
   float text_height = textAscent() - textDescent();
   fill(0, 0, 0);
-  text(loseMessage, (width / 2) - (text_width / 2), (height / 2) + (text_height / 2)); 
+  text(loseMessage, (width / 2) - (text_width / 2), (height / 2) + (text_height / 2));
   
 }
 
-
+// keep track of which buttons are pressed
 void keyPressed() {
   if (key == 'w' || key == UP)
     moveKeys[0] = true;
