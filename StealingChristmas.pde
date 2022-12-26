@@ -17,6 +17,7 @@ PImage[] grinchSprite = new PImage[4];
 PImage background;
 PImage spike;
 PImage present;
+PImage snow;
 
 void setup() {
   size(1000, 600);
@@ -36,6 +37,7 @@ void setup() {
   background = loadImage("background.png");
   spike = loadImage("spike.png");
   present = loadImage("present.png");
+  snow = loadImage("snow.png");
 }
 
 

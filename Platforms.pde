@@ -67,10 +67,16 @@ void drawPlatforms() {
     int w = platforms.get(i)[2];
     int h = platforms.get(i)[3];
     
+    // draw all tiles
     for (int a = 0; a < w; a += 32) {
       for (int b = 0; b < h; b += 32) {
         image(tiles[platforms.get(i)[4]], x + (a), y + (b));
       }
+    }
+    
+    // draw snow on first layer
+    for (int a = 0; a < w; a += 32) {
+      image(snow, x + (a), y);
     }
   }
 }
