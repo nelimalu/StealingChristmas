@@ -24,7 +24,6 @@ void setup() {
   // variables that can only be defined after window size is set
   groundY = height - 30;
   grinchY = height - grinchHeight - (height - groundY);
-  santaY = groundY - santaHeight;
   createPlatform(0, groundY, 1024, height - groundY, 0);  // starting platform
   
   // image loading
@@ -60,11 +59,10 @@ void draw() {
   if (!lost) {
     
     drawBackground();
-    updateGrinch();
     updatePlatforms();
     updateObstacles();
+    updateGrinch();
     updatePresents();
-    // updateSanta();
     
   } else {
     lose();
