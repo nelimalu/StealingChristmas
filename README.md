@@ -12,7 +12,7 @@ MCPT Learning Platformer Example
 - [x] implement losing
 - [ ] add presents and score counter
 - [ ] add chasing santa and santa collision = lose
-- [ ] add graphics
+- [x] add graphics
 
 ## Assets
 

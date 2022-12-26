@@ -1,12 +1,19 @@
 /* constants */
 final int GRAVITY = 3;
 final int BACKGROUND_SPEED = 3;
+final int BACKGROUND_IMAGE_SPEED = 1;
 final int PLATFORM_SPAWN_DIFFERENCE = 150;
 
 /* global variables */
 boolean[] moveKeys = new boolean[4];  // array to store all directions being pressed: 0 - UP, 1 - DOWN, 2 - LEFT, 3 - RIGHT
 int groundY;
 boolean lost = false;
+int background_imageX = 0;
+
+/* graphics */
+PImage[] tiles = new PImage[6];
+PImage background;
+PImage spike;
 
 void setup() {
   size(1000, 600);
@@ -14,17 +21,38 @@ void setup() {
   // variables that can only be defined after window size is set
   groundY = height - 30;
   grinchY = height - grinchHeight - (height - groundY);
-  createPlatform(0, groundY, width, height - groundY);
+  santaY = groundY - santaHeight;
+  createPlatform(0, groundY, 1024, height - groundY, 0);
   //createPlatform(400, 500, 100, 100);
+  
+  // image loading
+  for (int i = 0; i < 6; i++) {
+    tiles[i] = loadImage("tile" + (i + 1) + ".png");
+  }
+  background = loadImage("background.png");
+  spike = loadImage("spike.png");
+}
+
+
+void drawBackground() {
+  background_imageX -= BACKGROUND_IMAGE_SPEED;
+    image(background, background_imageX, 0);
+    image(background, background_imageX + width, 0);
+    fill(255,255,255,200);
+    rect(0, 0, width, height);
+    
+    if (background_imageX <= -width)
+      background_imageX = 0;
 }
 
 void draw() {
   if (!lost) {
-    background(240, 252, 252);
     
+    drawBackground();
     updateGrinch();
     updatePlatforms();
     updateObstacles();
+    // updateSanta();
     
   } else {
     lose();

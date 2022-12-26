@@ -1,6 +1,6 @@
 int grinchWidth = 50;
 int grinchHeight = 100;
-int grinchX = 10;
+int grinchX = 300;
 int grinchY;
 int grinchVel = 4;
 int grinchJumpHeight = 400;
@@ -89,8 +89,6 @@ String getCollisionTypes(ArrayList<String> collisions) {
 void moveGrinch() {
   ArrayList<String> collisions = platformCollide(grinchX, grinchY, grinchWidth, grinchHeight);
   String collisionTypes = getCollisionTypes(collisions);
-  
-  println(collisionTypes);
   
   if (moveKeys[0] && !collisionTypes.contains("bottom"))// && !grinchJumping) // UP
     grinchJumping = true;

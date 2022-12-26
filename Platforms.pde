@@ -37,14 +37,40 @@ ArrayList<String> platformCollide(int x, int y, int w, int h) { // takes grinch 
   return collisions;
 }
 
-void createPlatform(int x, int y, int w, int h) {
-  platforms.add(new int[] {x, y, w, h});
+int random32(int min, int max) {
+  int range = max - min;
+  int amount = range / 32;
+  int[] numbers = new int[amount];
+  
+  int counter = 0;
+  for (int i = min; i < max; i++) {
+    if (i % 32 == 0) {
+      numbers[counter] = i;
+      counter++;
+    }
+  }
+  
+  return numbers[(int) random(0, amount)];
+}
+
+void createPlatform(int x, int y, int w, int h, int tile) {
+  platforms.add(new int[] {x, y, w, h, tile});
 }
 
 void drawPlatforms() {
   for (int i = 0; i < platforms.size(); i++) {
     fill(0,0,0);
     rect(platforms.get(i)[0], platforms.get(i)[1], platforms.get(i)[2], platforms.get(i)[3]);
+    int x = platforms.get(i)[0];
+    int y = platforms.get(i)[1];
+    int w = platforms.get(i)[2];
+    int h = platforms.get(i)[3];
+    
+    for (int a = 0; a < w; a += 32) {
+      for (int b = 0; b < h; b += 32) {
+        image(tiles[platforms.get(i)[4]], x + (a), y + (b));
+      }
+    }
   }
 }
 
@@ -67,13 +93,13 @@ void updatePlatforms() {
   
   if (last_platform_end <= width) {
     int gap = (int) random(150, 300);  // how big is the gap between platforms
-    int size = (int) random(200, 500);  // how long is the new platform
+    int size = (int) random32(200, 500);  // how long is the new platform
     
     int maximum_height_range = max(grinchHeight, last_platform[1] - PLATFORM_SPAWN_DIFFERENCE);
     int minimum_height_range = min(groundY, last_platform[1] + PLATFORM_SPAWN_DIFFERENCE);
     int y = (int) random(maximum_height_range, minimum_height_range);
     
-    createPlatform(last_platform_end + gap, y, size, height - y);
+    createPlatform(last_platform_end + gap, y, size, height - y, (int) random(0, 6));
     
     if ((int) random(1, 2) == 1) {  // 50% chance to create an obstacle
       createObstacle(platforms.get(platforms.size() - 1));
