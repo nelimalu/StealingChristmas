@@ -14,6 +14,9 @@ void updateObstacles() {
     if (rectCollision(grinchX, grinchY, grinchWidth, grinchHeight, obstacles.get(i)[0], obstacles.get(i)[1], obstacles.get(i)[2], obstacles.get(i)[3])) {
       lost = true;
     }
+    
+    //if (obstacles.get(i)[0] - obstacles.get(i)[2] < 0)
+    //  obstacles.remove(i);
   }
 }
 

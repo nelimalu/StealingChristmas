@@ -9,11 +9,13 @@ boolean[] moveKeys = new boolean[4];  // array to store all directions being pre
 int groundY;
 boolean lost = false;
 int background_imageX = 0;
+int score = 0;
 
 /* graphics */
 PImage[] tiles = new PImage[6];
 PImage background;
 PImage spike;
+PImage present;
 
 void setup() {
   size(1000, 600);
@@ -31,18 +33,23 @@ void setup() {
   }
   background = loadImage("background.png");
   spike = loadImage("spike.png");
+  present = loadImage("present.png");
 }
 
 
 void drawBackground() {
   background_imageX -= BACKGROUND_IMAGE_SPEED;
-    image(background, background_imageX, 0);
-    image(background, background_imageX + width, 0);
-    fill(255,255,255,200);
-    rect(0, 0, width, height);
+  image(background, background_imageX, 0);
+  image(background, background_imageX + width, 0);
+  fill(255,255,255,200);
+  rect(0, 0, width, height);
+  
+  if (background_imageX <= -width)
+    background_imageX = 0;
     
-    if (background_imageX <= -width)
-      background_imageX = 0;
+  textSize(32);
+  fill(0, 0, 0);
+  text("Score: " + score, 10, 40); 
 }
 
 void draw() {
@@ -52,6 +59,7 @@ void draw() {
     updateGrinch();
     updatePlatforms();
     updateObstacles();
+    updatePresents();
     // updateSanta();
     
   } else {
@@ -69,7 +77,7 @@ void lose() {
   float text_width = textWidth(loseMessage);
   float text_height = textAscent() - textDescent();
   fill(0, 0, 0);
-  text("GAME OVER", (width / 2) - (text_width / 2), (height / 2) + (text_height / 2)); 
+  text(loseMessage, (width / 2) - (text_width / 2), (height / 2) + (text_height / 2)); 
   
 }
 

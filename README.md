@@ -10,7 +10,7 @@ MCPT Learning Platformer Example
 - [x] randomly generate platforms
 - [x] randomly generate obstacles
 - [x] implement losing
-- [ ] add presents and score counter
+- [x] add presents and score counter
 - [ ] add chasing santa and santa collision = lose
 - [x] add graphics
 

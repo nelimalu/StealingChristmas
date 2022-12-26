@@ -104,5 +104,7 @@ void updatePlatforms() {
     if ((int) random(1, 2) == 1) {  // 50% chance to create an obstacle
       createObstacle(platforms.get(platforms.size() - 1));
     }
+    
+    createPresent(platforms.get(platforms.size() - 1));
   }
 }
