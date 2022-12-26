@@ -15,7 +15,7 @@ void updateObstacles() {
       lost = true;
     }
     
-    if (obstacles.get(i)[0] - obstacles.get(i)[2] < 0)  // if spike goes off the screen, delete it
+    if (obstacles.get(i)[0] < -obstacles.get(i)[2])  // if spike goes off the screen, delete it
       obstacles.remove(i);
   }
 }

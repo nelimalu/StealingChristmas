@@ -13,6 +13,7 @@ int score = 0;
 
 /* graphics */
 PImage[] tiles = new PImage[6];
+PImage[] grinchSprite = new PImage[4];
 PImage background;
 PImage spike;
 PImage present;
@@ -29,6 +30,9 @@ void setup() {
   // image loading
   for (int i = 0; i < 6; i++) {
     tiles[i] = loadImage("tile" + (i + 1) + ".png");
+  }
+  for (int i = 0; i < 4; i++) {
+    grinchSprite[i] = loadImage("grinch" + (i + 1) + ".png");
   }
   background = loadImage("background.png");
   spike = loadImage("spike.png");

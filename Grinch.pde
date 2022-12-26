@@ -1,25 +1,35 @@
-int grinchWidth = 50;
-int grinchHeight = 100;
+int grinchWidth = 30;
+int grinchHeight = 94;
 int grinchX = 300;
 int grinchY;
 int grinchVel = 4;
 int grinchJumpHeight = 400;
 boolean grinchJumping = false;
 int grinchJumpingFrame = 0;
+int animationCounter = 0;
+int frame = 0;
 
 
 void updateGrinch() {
   moveGrinch();
   drawGrinch();
   
-  if (grinchY >= height || grinchX - grinchWidth <= 0)  // if the grinch leaves screen, you lose
+  if (grinchY >= height || grinchX < 0)  // if the grinch leaves screen, you lose
     lost = true;
 }
 
 void drawGrinch() {
   noStroke();
-  fill(36, 191, 96);
-  rect(grinchX, grinchY, grinchWidth, grinchHeight);  // draw the grinch
+
+  frame++;
+  if (frame % 10 == 0)
+    animationCounter++; // move to next walk cycle image every 10 frames (1/6 of a second)
+  animationCounter %= 4;  // keep walk frame within range of 4
+  frame %= 60;
+  
+  if (grinchJumping)  // if he's jumping don't draw walk cycle
+    animationCounter = 1;
+  image(grinchSprite[animationCounter], grinchX - 10, grinchY, 51, 94);
 }
 
 void resetJump() {
